@@ -1,0 +1,33 @@
+body{
+    margin: 0px;
+    padding: 20px;
+}
+
+div{
+    margin: 0 auto;
+    margin-bottom: 40px;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    width: 600px;
+    padding: 20px
+}
+
+#main{
+    height: 100px;
+}
+
+#list{
+    height: 250px;
+}
+
+li {
+    height: 30px;
+    list-style-type: none;
+}
+
+.listStyle{
+    color: white;
+    background-color: grey;
+    font-size: 20px;
+}
