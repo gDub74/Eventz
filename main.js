@@ -1,37 +1,37 @@
 
-// Create an Event Emitter module in JavaScript (as modern of a version as you prefer) with documentation and tests. Your implementation should
-// allow for:
+
 // Emitting named events with any number of arguments.
-// Registering handler functions for named events that are passed the appropriate arguments on emission.
+
 // Registering a "one-time" handler that will be called at most one time.
-// Removing specific previously-registered event handlers and/or all previously-registered event handlers.
-// This module should be suitable for publishing to npm, though it is not necessary for you to do so.
-// Do not subclass or otherwise require an existing Event Emitter module, and do not include any dependencies apart from testing or development
-// dependencies.
+
 
 
 export class Eventz {
 
     constructor() {
         this.registeredEvents = [];
+        this.eventId = 1;
     }
     
-
 
     // register() is a method to register a named event on one element. 
     // target is a string name of the html tag ID which to arttach the event listiner use '#elementId', or for more detailed query selector info see: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
     // eventName is a string that must be of an event type
     // callBack is your custom method that will fire once the event is triggered 
-    register(target, eventName, callBack) {
+    register(target, eventName, callback) {
         const el = document.querySelector(target);
-        el.addEventListener(eventName, callBack);
+        el.addEventListener(eventName, callback);
         
         //save reference 
         this.registeredEvents.push({
+            id: this.eventId,
             target: el,
             eventName,
-            callBack,
+            callback,
         })
+        
+        // increment this.eventId for next event 
+        this.eventId++
     }
 
     
@@ -40,46 +40,77 @@ export class Eventz {
     // For example if you wanted to add a 'click' listiner to all 'buttons' or a 'mouseover' event to all your 'li' elements on your document.
     // for info on querySelecorAll() see: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll 
 
-    registerAll(targets, eventName, callBack) {
+    registerAll(targets, eventName, callback) {
         const els = document.querySelectorAll(targets);
-        els.forEach(el => el.addEventListener(eventName, callBack));
+        els.forEach(el => el.addEventListener(eventName, callback));
         
         this.registeredEvents.push({
+            id: this.eventId,
             target: els,
             eventName,
-            callBack,
+            callback,
         })
+
+        this.eventId++;
     }
 
 
     
-    // method for removing one registered event
-    removeOne() {
+    // method for removing a registered event
+    // The target, eventName, and callback must match exactly to the arguments used durring the register() method.
+    remove(target, eventName, callback) {
+        const el = document.querySelector(target);
+        const lookUpObject = {
+            target: el,
+            eventName,
+            callback
+        }
 
+         // find the reference in the registeredEvents - filter method returns an array
+        const reference = this.registeredEvents.filter(item => item.target === lookUpObject.target && item.eventName === lookUpObject.eventName);
+
+        // remover the listiner if we found a match 
+        if (reference[0]) {
+            reference[0].target.removeEventListener(reference[0].eventName, reference[0].callback);
+
+            // now remove the reference from the registeredEvents object  
+            this.registeredEvents = this.registeredEvents.filter(item => item.id != reference[0].id);
+        }
     }
 
 
     // remove all method for removing all registered listeners given element or class that were placed at the same time. 
-    // The targets, eventName, and callBack must match exactly to the arguments used durring the registerAll() method.
-    removeAll(targets, eventName, callBack) {
+    // The targets, eventName, and callback must match exactly to the arguments used durring the registerAll() method.
+    removeAll(targets, eventName, callback) {
         const els = document.querySelectorAll(targets);
-        const queryObject = {
+        const lookUpObject = {
             target: els,
             eventName,
-            callBack
+            callback
         }
 
-        // find the reference in the registeredEvents
-        const reference = this.registeredEvents.filter(item => item.target[0] === queryObject.target[0] && item.eventName === queryObject.eventName);
-        console.log('reference ', reference)
-        reference[0].target.forEach(el => el.removeEventListener(reference[eventName], reference[callBack]));
+        // find the reference in the registeredEvents - filter method returns an array
+        const reference = this.registeredEvents.filter(item => item.target[0] === lookUpObject.target[0] && item.eventName === lookUpObject.eventName);
+
+        // remove listiners and reference in registeredEvents if we've found the matching events
+        if (reference[0]) {
+            reference[0].target.forEach(el => el.removeEventListener(reference[0].eventName, reference[0].callback));
+            this.registeredEvents = this.registeredEvents.filter(item => item.id != reference[0].id);
+        }
+
     }
 
-
-
+    // registering a one time only event that will remove the event listiner once the event fires
+    once(target, eventName, callback) {
+        document.querySelector(target).addEventListener(eventName, handeler);
+        function handeler(e) {
+            e.target.removeEventListener(eventName, handeler);
+            callback();
+        }
+    }
 
     // method for creating and dispatching a custome event 
-    emitCustom() {
+    emitCustom( ) {
         
     }
 }
