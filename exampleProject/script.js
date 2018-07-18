@@ -14,7 +14,7 @@ eventz.register('#main', 'click', function () {
     });
 
 
-// registering a button click that will unregister a click event on #main div in its callBack
+// registering a button click that will unregister a click event on #main div in its callback.
 eventz.register('#removeOneClick', 'click', function () {
     eventz.remove('#main', 'click', function () {
     this.classList.toggle('mainStyle');
@@ -24,13 +24,13 @@ eventz.register('#removeOneClick', 'click', function () {
 });
     
 
-//example of registerAll() registering all 'li' elements on a 'mouseover' event
+//example of registerAll() registering all 'li' elements on a 'mouseover' event.
 eventz.registerAll('li', 'mouseover', function () {
     this.classList.toggle('listStyle');
     });
 
 
-// here is an examole of registering a button click and then we are calling the registerAll() method in the outer callback
+// example of registering a button click and then calling the registerAll() method its callback.
 eventz.register('#addMouseout', 'click', function () {
     eventz.registerAll('li', 'mouseout', function () {
         this.classList.toggle('listStyle');
@@ -50,8 +50,6 @@ eventz.register('#removeMouseout', 'click', function () {
 // register a button with a one time only event 
 eventz.once('#onlyOnce', 'click', function () {
     document.body.setAttribute('style', 'background-color: lightgreen');
-    // const child = document.getElementById("oneTime");
-    // child.parentNode.removeChild(child);
     document.getElementById('addText').innerHTML = 'This event can only happen once - try clicking again and nothing will happen.'
 });
 
@@ -59,15 +57,24 @@ eventz.once('#onlyOnce', 'click', function () {
 
 
 
-// let's grab some info from an input text field to add to a detail object to be passe to a custom event emitter
-const textDetail = {}
-eventz.register('#textInput', 'change', function () {
-    const text = document.getElementById('textInput').value
-    textDetail.name = text;
-    console.log(textDetail);
-})
+// let's grab some info from an input text field to add to an object to be passeed to a custom event emitter as it's detail argument.
+// eventz.register('#textInput', 'change', function () {
+//     const data = {}
+//     const text = document.getElementById('textInput').value
+//     data.name = text;
+//     data.createdAt = Date.now()
+    
+//     // here we can call the emitCustom() method that will dispatch a custome event and add a listiner for that custom event 
+//     // and we can pass it our data object with any optional material we'd like to be emitted upon the event firing.
+//     // the handeler argument is a function to be passed as the callback to the event
+//     eventz.emitCustom('#greeting', '#textInput', 'greetingEvent', handeler, data);
 
-// and now we can create our custom event the first arg 
-eventz.emitCustom('')
+   
+//     // function to handel our event
+//     function handeler(e) {
+//         consol.log('in handeler callback', e.detail);
+//         document.getElementById('hello').innerHTML = `Welcome to the party ${e.detail.name}`
+//     }
+// });
 
 

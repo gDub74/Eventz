@@ -1,11 +1,5 @@
 
 
-// Emitting named events with any number of arguments.
-
-// Registering a "one-time" handler that will be called at most one time.
-
-
-
 export class Eventz {
 
     constructor() {
@@ -49,7 +43,7 @@ export class Eventz {
             target: els,
             eventName,
             callback,
-        })
+        });
 
         this.eventId++;
     }
@@ -109,8 +103,35 @@ export class Eventz {
         }
     }
 
-    // method for creating and dispatching a custome event 
-    emitCustom( ) {
+
+
+
+    // method for creating and dispatching a custom event 
+    // target is the element that will be listening for the custom event - must be a string
+    // emitter is the element that will be dispatching the custom event - must be a string
+    // eventName can be any string, it is what you are naming your custom event and what will be listened for
+    // bubbles is a boolean value. Defaults to true and if true allows event to bubble up to parent element and be captured there.
+    // callback is a function that will be called upon the custom event firing
+    // details are any aditional info you want to pass though your customEvent. Can be a string, a function, or an object
+
+    // registerCustom(target, emitter, eventName, callback, detail, bubbles = true) {
+    //     console.log('in emitCustom');
+
+    //     // set up the listiner on target element
+    //     this.register(target, eventName, callback);
+
+    //     // create the event
+    //     const myEvent = new CustomEvent(eventName, {
+    //         bubbles: bubbles,
+    //         detail: detail,
+    //     });
+
+    //     console.log('custom event details: ', myEvent.detail);
+    //     console.log('registered events ', this.registeredEvents);
         
-    }
+    //     // set up the emitter
+    //     document.querySelector(emitter).addEventListener('change', e => e.target.dispatchEvent(myEvent));
+    // }
+
+
 }
