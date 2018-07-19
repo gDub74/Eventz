@@ -1,6 +1,6 @@
 
 
-module.exports = class Eventz {
+export class Eventz {
 
     constructor() {
         this.registeredEvents = [];

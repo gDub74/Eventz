@@ -1,4 +1,5 @@
-import { Eventz } from '../main.js'
+import { Eventz } from './eventz.js'
+
 
 const eventz = new Eventz;
 
