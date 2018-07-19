@@ -1,6 +1,6 @@
 Eventz is a vanilla JavaScript event emitter module, similar to jQuery's handeling of events.
 
-Use:    Import or main.js into your script file create a new instance, and call desired methods on that instance:
+Use:    Create a new instance of Eventz class and call desired methods on that instance:
         For working examples check out the exapmleProject folder.
 
 
