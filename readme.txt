@@ -1,23 +1,16 @@
-This module is a vanilla JavaScript version of an event emitter, similar to jQuery's handeling of events.
+Eventz is a vanilla JavaScript event emitter module, similar to jQuery's handeling of events.
 
-To use, import into your script file create a new instance, and call desired methods on that instance:
+Use: import into your script file create a new instance, and call desired methods on that instance:
 
 
 
     const eventz = new Eventz;
-
-eventz.register('#myButton', 'click', function() {
-    //do something
-})
-
-
 
 
 Methods:
 
 
     register(target, eventName, callback) 
-
 
         Registers and event its target, and the function to run upon the event firing.
         target: a string name of the html tag ID which to arttach the event listiner. 
@@ -34,11 +27,26 @@ Methods:
 
 
 
-    registerAll(targets, eventName, callback) 
 
+    registerAll(targets, eventName, callback) 
 
         RegisterAll() is similar to register() except it registers all of a given element 
         or class type at once. For example if you wanted to add a 'click' listiner to all 
         'buttons' or a 'mouseover' event to all your 'li' elements on your document.
         for info on querySelecorAll() see: 
             https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll 
+
+
+
+    
+    remove(target, eventName, callback)
+
+        Method for removing a registered event.  The target, eventName, and callback must 
+        match exactly to the arguments used durring the register() method.
+
+
+
+    removeAll(targets, eventName, callback) 
+
+        Method for removing a group of events that were regitered at the same time. The target, 
+        eventName, and callback must match exactly to the arguments used durring the register() method.
