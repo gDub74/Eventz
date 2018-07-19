@@ -13,7 +13,7 @@ Methods: (found in main.js)
 
     register(target, eventName, callback) 
 
-        Registers and event its target, and the function to run upon the event firing.
+        Registers an event, its target, and the function to run upon the event firing.
         target: a string name of the html tag ID which to arttach the event listiner. 
         Use '#elementId', or for more detailed querySelector() info for use with the 
         'target' argument to be passed see: 
@@ -61,6 +61,3 @@ Methods: (found in main.js)
 
         registering a one time only event that will remove the event listiner once the 
         event fires.
-
-
-    
