@@ -23,7 +23,7 @@ describe('tests for Eventz class', () => {
     });
     
     console.log(ev.registeredEvents);
-
+ 
 });
 
 
