@@ -59,7 +59,8 @@ Methods: (found in main.js)
 
     once(target, eventName, callback)    
 
-        registering a one time only event that will remove the event listiner once the event fires.
+        registering a one time only event that will remove the event listiner once the 
+        event fires.
 
 
     
