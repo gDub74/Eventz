@@ -7,11 +7,6 @@ export class Eventz {
         this.eventId = 1;
     }
     
-
-    // register() is a method to register a named event on one element. 
-    // target is a string name of the html tag ID which to arttach the event listiner use '#elementId', or for more detailed query selector info see: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
-    // eventName is a string that must be of an event type
-    // callBack is your custom method that will fire once the event is triggered 
     register(target, eventName, callback) {
         const el = document.querySelector(target);
         el.addEventListener(eventName, callback);
@@ -23,8 +18,6 @@ export class Eventz {
             eventName,
             callback,
         })
-        
-        // increment this.eventId for next event 
         this.eventId++
     }
 
