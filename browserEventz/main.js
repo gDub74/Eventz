@@ -1,5 +1,4 @@
 
-
 module.exports = class Eventz {
 
     constructor() {
@@ -9,7 +8,7 @@ module.exports = class Eventz {
     
     register(target, eventName, callback) {
         if (typeof(target) != 'string' || typeof(eventName) != 'string') {
-            throw new Error('target and eventName arguments must be of string type');
+            throw('target and eventName arguments must be of string type');
         }
         if (typeof(callback) != 'function') {
             throw new Error('callback argument must be of function type');
