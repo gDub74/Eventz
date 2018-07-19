@@ -39,8 +39,15 @@ Methods: (found in main.js)
         https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll 
 
 
+        example use:
 
+            eventz.registerAll('li', 'mouseover', function () {
+                this.classList.toggle('listStyle');
+            });
     
+
+
+
     remove(target, eventName, callback)
 
         Method for removing a registered event.  The target, eventName, and callback must 
