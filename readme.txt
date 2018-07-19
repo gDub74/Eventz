@@ -20,7 +20,9 @@ Methods:
 
 
         Registers and event its target, and the function to run upon the event firing.
-        target: a string name of the html tag ID which to arttach the event listiner use '#elementId', or for more detailed query selector info see: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
+        target: a string name of the html tag ID which to arttach the event listiner. 
+        Use '#elementId', or for more detailed querySelector() info see: 
+            https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector
         eventName: a string that must be of an event type
         callback: your custom method that will fire once the event is triggered 
 
@@ -35,6 +37,8 @@ Methods:
     registerAll(targets, eventName, callback) 
 
 
-        RegisterAll() is similar to register() except it registers all of a given element or class type at once. 
-        For example if you wanted to add a 'click' listiner to all 'buttons' or a 'mouseover' event to all your 'li' elements on your document.
-        for info on querySelecorAll() see: https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll 
+        RegisterAll() is similar to register() except it registers all of a given element 
+        or class type at once. For example if you wanted to add a 'click' listiner to all 
+        'buttons' or a 'mouseover' event to all your 'li' elements on your document.
+        for info on querySelecorAll() see: 
+            https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll 
