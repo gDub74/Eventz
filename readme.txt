@@ -3,8 +3,8 @@ Eventz is a vanilla JavaScript event emitter module, similar to jQuery's handeli
 Use: import into your script file create a new instance, and call desired methods on that instance:
 
 
-
     const eventz = new Eventz;
+
 
 
 Methods:
@@ -49,4 +49,5 @@ Methods:
     removeAll(targets, eventName, callback) 
 
         Method for removing a group of events that were regitered at the same time. The target, 
-        eventName, and callback must match exactly to the arguments used durring the register() method.
+        eventName, and callback must match exactly to the arguments used durring the register() 
+        method.
