@@ -1,7 +1,7 @@
-    The Events module in main.js is an event emitter module that can register named events with any number of 
+    The Events module in main.js is an event emitter that can register named events with any number of 
     callback handlers. Emit registered events and upon emission pass in any additional arguments to the handler(s). 
     Remove spacific previously registered events. Remove all handlers associated with a given event. And, register 
-    and a one-time only event/handeler.
+    a one-time only event/handeler.
 
 
 
@@ -19,6 +19,7 @@ Methods:
 
 
 register(eventName, handler)
+
 
     eventName:  a string of your named event. Also the eventName you will pass when calling emit()
    
@@ -50,7 +51,8 @@ register(eventName, handler)
 
  emit(eventName, ...args) 
  
-    Calls all registered handlers with a given named event and applies any optional arguments.
+    -Calls all registered handlers with a given named event and applies any optional arguments.
+
 
 
     eventName:  String name of a registerd event.
@@ -81,7 +83,8 @@ register(eventName, handler)
 
 remove(eventName, handler)
 
-    Removes a spacific handler registered to an event.
+    -Removes a spacific handler registered to an event.
+
 
     eventName:  String name of a registerd event.
 
@@ -103,7 +106,7 @@ remove(eventName, handler)
  
 removeAll(eventName)
 
-    Removes all handlers registered with an event.
+    -Removes all handlers registered with an event.
 
     eventName:  String name of a registerd event.
 
@@ -121,7 +124,7 @@ removeAll(eventName)
 
 once(eventName, handler)
 
-    Registers a one time event and handler which will automatically unregister upon emission.
+    -Registers a one time event and handler which will automatically unregister upon emission.
 
     eventName:  String name of a registerd event.
 
@@ -135,14 +138,15 @@ once(eventName, handler)
                 ev.once('pageLoad', myFunc);
 
 
-            Now once you emit the 'pageLoad' event 
+            Now once you emit the 'pageLoad' event  myFunc will be invoked, passed any optional arguments and unregistered.
 
 
                 ev.emit('pageLoad');
 
-            
-            myFunc will be invoked and passed any optional arguments and then unregistered.
 
+
+            
+           
 
 
 
