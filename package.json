@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jest": "^23.4.1"
+    "jest": "^23.4.1",
+    "jest-console-matchers": "^1.1.0",
+    "jest-plugin-console-matchers": "^2.9.0"
   }
 }

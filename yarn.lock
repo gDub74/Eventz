@@ -1506,6 +1506,10 @@ jest-config@^23.4.1:
     jest-validate "^23.4.0"
     pretty-format "^23.2.0"
 
+jest-console-matchers@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jest-console-matchers/-/jest-console-matchers-1.1.0.tgz#a42a532dc245aac95283996968dccb2980fd5834"
+
 jest-diff@^23.2.0:
   version "23.2.0"
   resolved "https://registry.yarnpkg.com/jest-diff/-/jest-diff-23.2.0.tgz#9f2cf4b51e12c791550200abc16b47130af1062a"
@@ -1602,6 +1606,10 @@ jest-message-util@^23.4.0:
 jest-mock@^23.2.0:
   version "23.2.0"
   resolved "https://registry.yarnpkg.com/jest-mock/-/jest-mock-23.2.0.tgz#ad1c60f29e8719d47c26e1138098b6d18b261134"
+
+jest-plugin-console-matchers@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/jest-plugin-console-matchers/-/jest-plugin-console-matchers-2.9.0.tgz#f496bae016b415e3efcecd6469fd38dc83bb7a39"
 
 jest-regex-util@^23.3.0:
   version "23.3.0"

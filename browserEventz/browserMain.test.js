@@ -3,6 +3,9 @@ const Eventz = require('./browserMain');
 const ev = new Eventz;
 
 
+
+// tests for browserEvents module
+
 describe('tests for Eventz class', () => {
 
     test('registers an event into the registeredEvents object', () => {
