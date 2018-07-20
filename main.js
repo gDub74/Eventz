@@ -1,15 +1,6 @@
 
 
 
-// Emitting named events with any number of arguments.
-// Registering handler functions for named events that are passed the appropriate arguments on emission.
-// Registering a "one-time" handler that will be called at most one time.
-// Removing specific previously-registered event handlers and/or all previously-registered event handlers.
-// This module should be suitable for publishing to npm, though it is not necessary for you to do so.
-// Do not subclass or otherwise require an existing Event Emitter module, and do not include any dependencies apart from testing or development
-// dependencies.
-
-
 class Eventz {
     constructor() {
         // store named events as key and the handeler functions associated in an array eg. {click : [ handler, handler, ...]}
@@ -53,8 +44,26 @@ class Eventz {
             delete this.registeredEvents[name];
             return;
         }
-        if (this.registeredEvents[name]) {
-            this.registeredEvents[name] = this.registeredEvents.filter(item => item != handeler)
+        this.registeredEvents[name] = this.registeredEvents[name].filter(element => element != handeler)
+    }
+
+    // remove all handelers asociated with a given named event
+    removeAll(name) {
+        if (!this.registeredEvents[name]) {
+            return;
+        }
+        delete this.registeredEvents[name];
+    }
+
+    // register a onetime event handeler that will be removed upon the event emitting
+    once(name, handeler) {
+        // first we register the event name with a callback that will get triggered upon emission
+        this.register(name, callback);
+
+        // now in callback we remove the event from registered events and call the handeler that was first passed
+        function callback() {
+            handeler();
+            this.remove(name, callback);
         }
     }
 
@@ -65,10 +74,21 @@ class Eventz {
 
 let ev = new Eventz;
 
-ev.register('click', function () { console.log('my listiner', arguments) });
+let functonX = function () { console.log('my second listiner') }
+
+ev.register('click', functonX);
 ev.register('click', function () { console.log('my second listiner', arguments) });
 ev.register('customEvent', function () { console.log('this is a custom event') });
 
-console.log(ev.registeredEvents);
-ev.emit('click', 'hello', 'world', 'we can have as many', 'arguments as', 'we wish')
+ev.emit('click', 'hello', 'world', 'we can have as many', 'arguments as', 'we wish');
 ev.emit('customEvent');
+
+
+// ev.once('hover', () => console.log('hovering one time'));
+// console.log(ev.registeredEvents);
+// ev.emit('hover');
+console.log(ev.registeredEvents);
+ev.remove('click', functonX);
+
+console.log(ev.registeredEvents);
+
