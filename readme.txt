@@ -1,7 +1,7 @@
-    Events is an event emitter module that can register named events with any number of 
-    callback handlers. Emit registered events and upon emission pass in any additional 
-    arguments to the handler(s). Remove spacific previously registered events. Remove all 
-    handlers associated with a given event. And, register & fire a one-time event/handeler.
+    the Events module in main.js is an event emitter module that can register named events with any number of 
+    callback handlers. Emit registered events and upon emission pass in any additional arguments to the handler(s). 
+    Remove spacific previously registered events. Remove all handlers associated with a given event. And, register 
+    and a one-time only event/handeler.
 
 
 
