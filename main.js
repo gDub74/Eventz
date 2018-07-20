@@ -1,6 +1,5 @@
 
 
-
 class Eventz {
     constructor() {
         this.registeredEvents = {};
@@ -78,10 +77,9 @@ class Eventz {
 }
 
 
-
 let ev = new Eventz;
 
-// methods:
+// handlers:
 let functonX = () => console.log('my first event');
 let greet = (firstName, lastName) => console.log(`Hello ${firstName} ${lastName}, how are you today?`);
 let custom = () => console.log('this is a custom event');
@@ -97,11 +95,10 @@ ev.register('pageLoad', greet);
 
 
 // emits
-ev.emit('click', 'hello', 'world', 'we can', 'have zas', 'many', 'arguments as', 'we wish!');
+ev.emit('click', 'hello', 'world', 'we can', 'have zas', 'many', 'arguments as', 'we wish');
 ev.emit('customEvent');
 ev.emit('submit', 4, 5);
 ev.emit('pageLoad', 'John', 'Doe')
-
 
 
 // register one time event:
@@ -119,4 +116,4 @@ console.log('********************');
 console.log(ev.registeredEvents); 
 console.log('********************');
 ev.removeAll('submit');
-console.log(ev.registeredEvents); 
+console.log(ev.registeredEvents);
