@@ -5,67 +5,60 @@ class Eventz {
         this.registeredEvents = {};
     }
 
-    register(name, handler) {
-        if (typeof (name) != 'string' || typeof(handler) != 'function') {
+    register(eventName, handler) {
+        if (typeof(eventName) !== 'string' || typeof(handler) !== 'function') {
             throw new TypeError;
         }
-        if (!this.registeredEvents[name]) {
-            this.registeredEvents[name] = [];
+        if (!this.registeredEvents[eventName]) {
+            this.registeredEvents[eventName] = [];
         }
-        this.registeredEvents[name].push(handler);
+        this.registeredEvents[eventName].push(handler);
     }
 
-    // emit event passing in aptional argumments to be called with handelers
-    emit(name, ...args) {
-        if (typeof (name) != 'string') {
-            throw new TypeError;
-        }
-        if (!this.registeredEvents[name]) {
-            throw new Error('event not registered');
+    // emit event passiing in optional argumments to be called with handelers
+    emit(eventName, ...args) {
+        if (!this.registeredEvents[eventName]) {
+            return false;
         }
         // iterate over handelers and call with arguments
-        this.registeredEvents[name].forEach(handler => {
-            handler.call(this, ...args);
+        this.registeredEvents[eventName].forEach(handler => {
+            handler.call(null, ...args);
         });
+        // if the emit is successfull 
+        return true;
     }
 
     // remove a handeler from a named event
-    remove(name, handler) {
-        if (!this.registeredEvents[name]) {
-            throw new Error('event not registered');
+    remove(eventName, handler) {
+        if (!this.registeredEvents[eventName]) {
+            return false;
         }
-        if (this.registeredEvents[name].length === 1) {
-            delete this.registeredEvents[name];
+        if (this.registeredEvents[eventName].length === 1) {
+            delete this.registeredEvents[eventName];
             return;
         }
-        this.registeredEvents[name] = this.registeredEvents[name].filter(element => element != handler)
+        this.registeredEvents[eventName] = this.registeredEvents[eventName].filter(func => func !== handler)
     }
 
     // remove all handelers asociated with a given named event
-    removeAll(name) {
-        if (typeof (name) != 'string') {
-            throw new TypeError;
+    removeAll(eventName) {
+        if (!this.registeredEvents[eventName]) {
+            return false;
         }
-        if (!this.registeredEvents[name]) {
-            throw new Error('event not registered');
-        }
-        delete this.registeredEvents[name];
+        delete this.registeredEvents[eventName];
     }
 
 
-    // register onetime event handeler, remove on emit
-    once(name, handler) {
-        if (typeof(name) != 'string' || typeof(handler) != 'function') {
-            throw new TypeError;
-        }
-        // callback will get triggered on emit
-        this.register(name, callback);
-
-        // remove event from registered events and call handler
-        function callback() {
+    // register one-time event handeler, remove on emit
+    once(eventName, handler) {
+        // remove event from registered events and call handler, keep context with arrow function
+        const callback = () => {
+            this.remove(eventName, callback);
             handler();
-            this.remove(name, callback);
+            return true;
         }
+        // callback will get triggered on emit and in turn handler invoked
+        this.register(eventName, callback);
     }
 }
 
@@ -91,7 +84,8 @@ ev.register('pageLoad', greet);
 ev.emit('click', 'hello', 'world', 'we can', 'have zas', 'many', 'arguments as', 'we wish');
 ev.emit('customEvent');
 ev.emit('submit', 4, 5);
-ev.emit('pageLoad', 'John', 'Doe')
+ev.emit('pageLoad', 'John', 'Doe');
+// ev.emit('fakeName');
 
 
 // register one time event:
