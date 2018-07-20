@@ -1,4 +1,4 @@
-const Eventz = require('./main');
+const Eventz = require('./browserMain');
 
 const ev = new Eventz;
 
