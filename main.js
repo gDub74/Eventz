@@ -1,6 +1,7 @@
 
 
 class Eventz {
+    
     constructor() {
         this.registeredEvents = {};
     }
@@ -13,19 +14,20 @@ class Eventz {
             this.registeredEvents[eventName] = [];
         }
         this.registeredEvents[eventName].push(handler);
+        return this;
     }
 
-    // emit event passiing in optional argumments to be called with handelers
+    // emit event passing in optional argumments to be called with handelers
     emit(eventName, ...args) {
         if (!this.registeredEvents[eventName]) {
             return false;
         }
         // iterate over handelers and call with arguments
         this.registeredEvents[eventName].forEach(handler => {
+            // passing 'null' so as not to change context, could pass 'this' -not sure which is correct here
             handler.call(null, ...args);
         });
-        // if the emit is successfull 
-        return true;
+        return this;
     }
 
     // remove a handeler from a named event
@@ -35,9 +37,10 @@ class Eventz {
         }
         if (this.registeredEvents[eventName].length === 1) {
             delete this.registeredEvents[eventName];
-            return;
+            return this;
         }
-        this.registeredEvents[eventName] = this.registeredEvents[eventName].filter(func => func !== handler)
+        this.registeredEvents[eventName] = this.registeredEvents[eventName].filter(func => func !== handler);
+        return this;
     }
 
     // remove all handelers asociated with a given named event
@@ -46,8 +49,8 @@ class Eventz {
             return false;
         }
         delete this.registeredEvents[eventName];
+        return this;
     }
-
 
     // register one-time event handeler, remove on emit
     once(eventName, handler) {
@@ -55,7 +58,7 @@ class Eventz {
         const callback = () => {
             this.remove(eventName, callback);
             handler();
-            return true;
+            return this;
         }
         // callback will get triggered on emit and in turn handler invoked
         this.register(eventName, callback);
