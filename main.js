@@ -49,6 +49,9 @@ class Eventz {
 
     // remove all handelers asociated with a given named event
     removeAll(name) {
+        if (!name) {
+            throw new Error('named event argument must be provided');
+        }
         if (!this.registeredEvents[name]) {
             return;
         }
