@@ -5,38 +5,34 @@ class Eventz {
         this.registeredEvents = {};
     }
 
-    //register event name and associated handeler 
     register(name, handler) {
-        if (arguments.length != 2) {
-            throw new Error('name and handeler must be provided as a string and function respectively')
-        }
         if (typeof (name) != 'string' || typeof(handler) != 'function') {
             throw new TypeError;
         }
         if (!this.registeredEvents[name]) {
-            // if this named event hasn't been registered previsiouly then we need an array to push the handeler into
             this.registeredEvents[name] = [];
         }
         this.registeredEvents[name].push(handler);
     }
 
-
-    // emit a registered event and all the handelers associated with it passing in any aptional argumments to be called with the handelers
+    // emit event passing in aptional argumments to be called with handelers
     emit(name, ...args) {
+        if (typeof (name) != 'string') {
+            throw new TypeError;
+        }
         if (!this.registeredEvents[name]) {
-            return undefined;
-        } 
-        // iterate over handelers associated with registered named event and use function.prototype.call() method with arguments
+            throw new Error('event not registered');
+        }
+        // iterate over handelers and call with arguments
         this.registeredEvents[name].forEach(handler => {
             handler.call(this, ...args);
         });
     }
 
-
     // remove a handeler from a named event
     remove(name, handler) {
         if (!this.registeredEvents[name]) {
-            return undefined;
+            throw new Error('event not registered');
         }
         if (this.registeredEvents[name].length === 1) {
             delete this.registeredEvents[name];
@@ -47,28 +43,25 @@ class Eventz {
 
     // remove all handelers asociated with a given named event
     removeAll(name) {
-        if (!name) {
-            throw new Error('named event argument must be provided');
+        if (typeof (name) != 'string') {
+            throw new TypeError;
         }
         if (!this.registeredEvents[name]) {
-            return;
+            throw new Error('event not registered');
         }
         delete this.registeredEvents[name];
     }
 
 
-    // register a onetime event handeler that will be removed upon the event emitting
+    // register onetime event handeler, remove on emit
     once(name, handler) {
-        if (arguments.length != 2) {
-            throw new Error('name and handler must be provided as a string and function respectively')
-        }
         if (typeof(name) != 'string' || typeof(handler) != 'function') {
             throw new TypeError;
         }
-        // register the event name with a callback that will get triggered upon emission
+        // callback will get triggered on emit
         this.register(name, callback);
 
-        // now in callback we remove the event from registered events and call the handler that was first passed
+        // remove event from registered events and call handler
         function callback() {
             handler();
             this.remove(name, callback);
