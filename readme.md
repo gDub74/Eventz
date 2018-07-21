@@ -1,3 +1,5 @@
+## Eventz - Event EMITTER
+
     The Events module in main.js is an event emitter that can register named events with any number of 
     callback handlers. Emit registered events and upon emission pass in any additional arguments to the handler(s). 
     Remove spacific previously registered events. Remove all handlers associated with a given event. And, register 
@@ -5,7 +7,7 @@
 
 
 
-to use:             
+### to use:             
 
     const Eventz = require('./main');
 
@@ -15,10 +17,10 @@ to use:
 
 
 
-Methods:
+### Methods:
 
 
-register(eventName, handler)
+### register(eventName, handler)
 
 
     eventName:  a string of your named event. Also the eventName you will pass when calling emit()
@@ -49,7 +51,7 @@ register(eventName, handler)
 
 
 
- emit(eventName, ...args) 
+ ### emit(eventName, ...args) 
  
     -Calls all registered handlers with a given named event and applies any optional arguments.
 
@@ -81,7 +83,7 @@ register(eventName, handler)
 
 
 
-remove(eventName, handler)
+### remove(eventName, handler)
 
     -Removes a spacific handler registered to an event.
 
@@ -104,7 +106,7 @@ remove(eventName, handler)
 
 
  
-removeAll(eventName)
+### removeAll(eventName)
 
     -Removes all handlers registered with an event.
 
@@ -122,7 +124,7 @@ removeAll(eventName)
 
 
 
-once(eventName, handler)
+### once(eventName, handler)
 
     -Registers a one time event and handler which will automatically unregister upon emission.
 
@@ -142,6 +144,7 @@ once(eventName, handler)
 
 
                 ev.emit('pageLoad');
+
 
 
 
