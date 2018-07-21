@@ -1,4 +1,4 @@
-## Eventz - Event EMITTER
+## Eventz - Event Emitter
 
     The Events module in main.js is an event emitter that can register named events with any number of 
     callback handlers. Emit registered events and upon emission pass in any additional arguments to the handler(s). 
