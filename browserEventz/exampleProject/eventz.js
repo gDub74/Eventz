@@ -4,7 +4,6 @@ export class Eventz {
 
     constructor() {
         this.registeredEvents = [];
-        this.eventId = 1;
     }
     
     register(target, eventName, callback) {
@@ -20,12 +19,10 @@ export class Eventz {
 
         //save reference 
         this.registeredEvents.push({
-            id: this.eventId,
             target: el,
             eventName,
             callback,
         });
-        this.eventId++
     }
 
     registerAll(targets, eventName, callback) {
@@ -40,13 +37,10 @@ export class Eventz {
         els.forEach(el => el.addEventListener(eventName, callback));
         
         this.registeredEvents.push({
-            id: this.eventId,
             target: els,
             eventName,
             callback,
         });
-
-        this.eventId++;
     }
 
     remove(target, eventName, callback) {
@@ -65,14 +59,16 @@ export class Eventz {
         }
 
          // find the reference in the registeredEvents - filter method returns an array
-        const reference = this.registeredEvents.filter(item => item.target === lookUpObject.target && item.eventName === lookUpObject.eventName);
+        const reference = this.registeredEvents.filter(item => item.target === lookUpObject.target && item.eventName === lookUpObject.eventName && item.callback === lookUpObject.callback);
 
+        // destructure the match result from reference array
+        const [ match ] = reference;
         // remover the listiner if we found a match 
-        if (reference[0]) {
-            reference[0].target.removeEventListener(reference[0].eventName, reference[0].callback);
+        if (match) {
+            match.target.removeEventListener(match.eventName, match.callback);
 
             // now remove the reference from the registeredEvents object  
-            this.registeredEvents = this.registeredEvents.filter(item => item.id != reference[0].id);
+            this.registeredEvents = this.registeredEvents.filter(item => item.id != match.id);
         }
     }
 
@@ -92,12 +88,15 @@ export class Eventz {
         }
 
         // find the reference in the registeredEvents - filter method returns an array
-        const reference = this.registeredEvents.filter(item => item.target[0] === lookUpObject.target[0] && item.eventName === lookUpObject.eventName);
+        const reference = this.registeredEvents.filter(item => item.target[0] === lookUpObject.target[0] && item.eventName === lookUpObject.eventName && item.callback === lookUpObject.callback);
+
+        // destructure the match result from reference array
+        const [match] = reference;
 
         // remove listiners and reference in registeredEvents if we've found the matching events
-        if (reference[0]) {
-            reference[0].target.forEach(el => el.removeEventListener(reference[0].eventName, reference[0].callback));
-            this.registeredEvents = this.registeredEvents.filter(item => item.id != reference[0].id);
+        if (match) {
+            match.target.forEach(el => el.removeEventListener(match.eventName, match.callback));
+            this.registeredEvents = this.registeredEvents.filter(item => item != match);
         }
     }
 
