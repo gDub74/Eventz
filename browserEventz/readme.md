@@ -1,19 +1,19 @@
 
-    --- note ---
-browserEventz is a vanilla JavaScript event emitter module, similar to jQuery's 
-handeling of events. This was my first attempt at writing an event emitter module. 
-However I needed something more generic that could be used in any situation, not 
-just the on a broweser thus --> https://github.com/gDub74/Eventz/blob/master/main.js 
-more generic events emitter module located in the root of this repository.
+    browserEventz is a vanilla JavaScript event emitter module, similar to jQuery's 
+    handeling of events. This was my first attempt at writing an event emitter module. 
+    However I needed something more generic that could be used in any situation, not 
+    just the on a broweser thus --> https://github.com/gDub74/Eventz/blob/master/main.js 
+    more generic events emitter module located in the root of this repository.
 
 
 
 
-Use:    Create a new instance of Eventz class and call desired methods on that instance:
-        For working examples check out the exapmleProject folder.
+    Use:    Create a new instance of Eventz class and call desired methods on that instance:
+            For working examples check out the exapmleProject folder.
 
 
-    const eventz = new Eventz;
+
+            const eventz = new Eventz;
 
 
 
