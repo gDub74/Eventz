@@ -17,7 +17,8 @@ Use:    Create a new instance of Eventz class and call desired methods on that i
 
 
 
-Methods: (found in main.js)
+
+## Methods: (found in browserMain.js)
 
 
 ### register(target, eventName, callback) 
