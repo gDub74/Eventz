@@ -20,7 +20,7 @@ Use:    Create a new instance of Eventz class and call desired methods on that i
 Methods: (found in main.js)
 
 
-    register(target, eventName, callback) 
+### register(target, eventName, callback) 
 
         Registers an event, its target, and the function to run upon the event firing.
         target: a string name of the html tag ID which to arttach the event listiner. 
@@ -39,7 +39,7 @@ Methods: (found in main.js)
 
 
 
-    registerAll(targets, eventName, callback) 
+### registerAll(targets, eventName, callback) 
 
         RegisterAll() is similar to register() except it registers all of a given element 
         or class type at once. For example if you wanted to add a 'click' listiner to all 
@@ -57,7 +57,7 @@ Methods: (found in main.js)
 
 
 
-    remove(target, eventName, callback)
+### remove(target, eventName, callback)
 
         Method for removing a registered event.  The target, eventName, and callback must 
         match exactly to the arguments used durring the register() method.
@@ -65,7 +65,7 @@ Methods: (found in main.js)
 
 
 
-    removeAll(targets, eventName, callback) 
+### removeAll(targets, eventName, callback) 
 
         Method for removing a group of events that were regitered at the same time. The target, 
         eventName, and callback must match exactly to the arguments used durring the register() 
@@ -73,7 +73,7 @@ Methods: (found in main.js)
 
 
 
-    once(target, eventName, callback)    
+### once(target, eventName, callback)    
 
         registering a one time only event that will remove the event listiner once the 
         event fires.
